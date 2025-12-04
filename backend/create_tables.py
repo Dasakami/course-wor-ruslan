@@ -1,4 +1,3 @@
-# backend/create_tables.py
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app.core.database import Base
@@ -7,20 +6,16 @@ from app.models.availability import Availability
 from app.models.booking import Booking, BookingStatus
 from app.core.config import settings
 
-# создаём движок
 engine = create_engine(
     settings.DATABASE_URL,
-    connect_args={"check_same_thread": False}  # нужно для SQLite
+    connect_args={"check_same_thread": False}  
 )
 
-# создаём все таблицы
 Base.metadata.create_all(bind=engine)
 
-# создаём сессию для теста
 SessionLocal = sessionmaker(bind=engine)
 db = SessionLocal()
 
-# создаём тестового пользователя
 if not db.query(User).filter_by(email="dan@gmail.com").first():
     user = User(
         email="dan@gmail.com",
