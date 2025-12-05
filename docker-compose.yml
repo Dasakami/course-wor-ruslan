@@ -8,7 +8,6 @@ services:
       - "8004:8000"
     volumes:
       - ./backend:/app
-      - ./backend/timetable.db:/app/timetable.db
     environment:
       - PYTHONUNBUFFERED=1
     networks:
