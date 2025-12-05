@@ -7,6 +7,7 @@ from app.core.config import settings
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
+
 def verify_password(plain_password: Union[str, bytes], hashed_password: str) -> bool:
     if not isinstance(plain_password, str):
         try:
